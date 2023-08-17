@@ -63,6 +63,8 @@ hr {
   justify-content: center;
   width: 100%;
   height: 100vh;
+  min-height: 820px;
+  position: relative;
 
   background: url(../images/intro-bg.jpg) center no-repeat;
   -webkit-background-size: cover;
@@ -112,6 +114,24 @@ hr {
   left: 0;
   right: 0;
   z-index: 100;
+}
+
+.header.fixed {
+  padding: 10px 0;
+  background-color: #eb8b8d;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  transform: translate3d(0, 0, 0);
+
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.header.active {
+  background-color: #eb8b8d;
 }
 
 .header__iner {
@@ -174,6 +194,78 @@ hr {
 
 .nav__link.active {
   color: #fce38a;
+}
+
+/* Nav toggle */
+.nav-toggle {
+  display: none;
+  position: absolute;
+  width: 30px;
+
+  font-size: 0;
+  color: transparent;
+
+  border: 0;
+  background: none;
+
+  top: 24px;
+  right: 24px;
+  z-index: 1;
+  padding: 10px 0;
+
+  cursor: pointer;
+}
+
+.nav-toggle__item {
+  display: block;
+  width: 100%;
+  height: 3px;
+
+  background-color: #fff;
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+
+  transition: background 0.2s linear;
+}
+
+.nav-toggle.active .nav-toggle__item {
+  background: none;
+}
+
+.nav-toggle__item::before,
+.nav-toggle__item::after {
+  content: "";
+  width: 100%;
+  height: 3px;
+
+  background-color: #fff;
+
+  position: absolute;
+  left: 0;
+  z-index: 1;
+
+  transition: transform 0.2s linear;
+}
+
+.nav-toggle.active .nav-toggle__item::before {
+  transform-origin: left top;
+  transform: rotate(45deg) translate3d(0px, -2px, 0);
+}
+.nav-toggle.active .nav-toggle__item::after {
+  transform-origin: left bottom;
+  transform: rotate(-45deg) translate3d(0px, 3px, 0);
+}
+
+.nav-toggle__item::before {
+  top: -8px;
+}
+.nav-toggle__item::after {
+  bottom: -8px;
 }
 
 /* Button */
@@ -1286,9 +1378,36 @@ hr {
 }
 
 @media (max-width: 770px) {
+  /* Intro */
+  .intro {
+    min-height: 650px;
+  }
+
+  /* Header */
+  .header {
+    padding: 10px 0;
+  }
+
   /* Nav */
   .header__nav {
     display: none;
+    width: 100%;
+
+    position: absolute;
+    top: 100%;
+    left: 0;
+
+    background-color: #eb8b8d;
+  }
+
+  .nav__link {
+    display: block;
+    margin: 0;
+    padding: 8px 20px;
+  }
+
+  .nav-toggle {
+    display: block;
   }
 
   /* Section */
@@ -1404,6 +1523,7 @@ hr {
 
 @media (max-width: 575px) {
   /* Intro */
+
   .intro__suptitle {
     font-size: 22px;
   }
